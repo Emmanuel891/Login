@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>API</title>
+    <link href="estilos.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCZIkOh31T6Fa_CN0JCpOm6K_Z9VcScC-Q"></script>
+</head>
+<body>
+    <p><h1>API MAP</h1></p>
+    <div id="mapa" style="width: center; height: 500px;">
+        --HERE IS THE MAP--
+    </div>
+
+    <script type="text/javascript">
+    var divMapa = document.getElementById("mapa");
+    navigator.geolocation.getCurrentPosition(fn_ok,fn_mal);
+
+    function fn_mal() { }
+    function fn_ok(rta) {
+    var lat = rta.coords.latitude;
+    var lon = rta.coords.longitude;
+
+    var gLatLon = new google.maps.LatLng(lat,lon);
+    var objConfig = {
+        zoom : 17,
+        center : gLatLon
+    }
+    var gMapa = new google.maps.Map(divMapa, objConfig);
+    var objConfigMarker = {
+        position : gLatLon,
+        map : gMapa
+    }
+    var gMarker = new google.maps.Marker( objConfigMarker )
+    }
+    </script>
+</body>
+</html>
