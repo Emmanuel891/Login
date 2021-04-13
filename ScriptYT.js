@@ -14,9 +14,8 @@ $(document).ready(function () {
 
         $("#videos").empty() 
 
-        $.get("https://www.googleapis.com/youtube/v3/search?key=" + key 
-        + "&type=video&part=snippet&maxResults=" + maxResults + "&q=" + search,function (data){
-            console.log(data)
+        $.get("https://www.googleapis.com/youtube/v3/search?key=" + key + "&type=video&part=snippet&maxResults=" + maxResults + "&q=" + search,function (data){
+             console.log(data)
 
             data.items.forEach(item => {
                 video = `
