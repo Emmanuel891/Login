@@ -1,37 +1,67 @@
 <!DOCTYPE html>
-<!-- Powered by Evilnapsis 2017 -->
-<html>
+<html lang="en">
 <head>
-<title>Google Maps API v3: Agregar Marcadores Simples</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCZIkOh31T6Fa_CN0JCpOm6K_Z9VcScC-Q"></script>
+<style>
+  body {
+      background-color: aquamarine;
+      background-image:url('keching.jpg') ;
+  }
+  #pito {
+    color:black;
+    font-size: 500%;
+  }
+</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Google Maps API v3: Agregar Marcadores Simples</h1>
-<div id="map" style="width:100%;height:600px;"></div>
-<script type="text/javascript">
- 
-var map;
-var centerll = {lat: 23.63, lng: -102.55};
-function initMap() {
-map = new google.maps.Map(document.getElementById('map'), {
-center: centerll,
-zoom: 6
-});
 
-var marker1 = new google.maps.Marker({
-position: centerll,
-map:map
-});
+  <center>
+  <h1 id="pito">Mapa interactivo</h1>
+  <button type="button" class="btn btn-warning" onclick="findMe()">Mostrar ubicacion</button>
+  <br>
+  <br>
+  <div id="mapa" style="width: 1000px; height: 600px;"></div>
+  </center>
 
-var marker2 = new google.maps.Marker({
-position: {lat: 23.93, lng: -102.85},
-map:map
-});
 
-}
- 
-</script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZIkOh31T6Fa_CN0JCpOm6K_Z9VcScC-Q0&callback=initMap">
-</script>
+
+  <script>
+    function findMe(){
+          var divMapa = document.getElementById('mapa');
+    navigator.geolocation.getCurrentPosition(fn_ok, fn_mal);
+    function fn_mal(){}
+    function fn_ok (rta) {
+
+      var lat = rta.coords.latitude;
+      var lon = rta.coords.longitude;
+
+      var gLatLon = new google.maps.LatLng (lat, lon);
+      var objConfig = {
+          zoom: 17,
+          center: gLatLon
+
+      }
+
+      var gMapa = new google.maps.Map(divMapa, objConfig);
+      var objConfigMarker = {
+        position: gLatLon ,
+        map: gMapa,
+        title: "Ubicacion actual"
+      }
+      var gMarker = new google.maps.Marker(objConfigMarker);
+    }
+
+    }
+
+  </script>
 </body>
 </html>
